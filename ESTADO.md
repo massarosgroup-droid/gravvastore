@@ -18,7 +18,7 @@ una vista previa en dorado y el cambio de foto al elegir el color.
 ## Cambios en productos (9-oct-2026)
 - Tarjetero: precio 1.890 € → 18,90 €, título y descripción limpios
 - Funda portátil: descripción ordenada
-- Fotos nuevas (coche y caja de regalo) añadidas a Cartera croco, Cartera + llavero y Set Premium
+- Foto caja de regalo solo en el Set; foto del coche en la sección "Hecho para el día a día"; foto de la colección arriba en la portada y en la llamada final
 - Set Premium: cada color enseña su foto
 
 ## Pendiente

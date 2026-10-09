@@ -16,9 +16,9 @@
         "punto_1": "Grabado gratis",
         "punto_2": "Envío con seguimiento",
         "punto_3": "Listo para regalar",
-        "imagen": "shopify://shop_images/gravva-set-caja-regalo.jpg",
-        "etiqueta": "Grabado en dorado:",
-        "etiqueta_nombre": "Lisa",
+        "imagen": "shopify://shop_images/gravva-portada-coleccion.jpg",
+        "etiqueta": "Grabado en dorado, con su nombre",
+        "etiqueta_nombre": "",
         "color_fondo": "#0D0D0F",
         "color_texto": "#F7F1E4",
         "alto_min": 620,
@@ -265,7 +265,7 @@
         "o3": {
           "type": "ocasion",
           "settings": {
-            "imagen": "shopify://shop_images/gravva-set-caja-regalo.jpg",
+            "imagen": "shopify://shop_images/cartera-rojo-croco.png",
             "titulo": "Para tu pareja",
             "texto": "El set en su caja de regalo",
             "url": "shopify://products/set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo"
@@ -366,7 +366,7 @@
     "cta": {
       "type": "gv-cta",
       "settings": {
-        "imagen": "shopify://shop_images/gravva-set-caja-regalo.jpg",
+        "imagen": "shopify://shop_images/gravva-portada-coleccion.jpg",
         "eyebrow": "Grabado gratis",
         "titulo": "Un regalo con su nombre no se olvida",
         "tam_titulo": 54,
