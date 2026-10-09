@@ -23,5 +23,6 @@ una vista previa en dorado y el cambio de foto al elegir el color.
 
 ## Pendiente
 - Publicar el diseño desde Shopify (Tienda online → Temas → Publicar)
-- Algunas descripciones dicen "8 colores", pero el producto no tiene opción de color
+- Añadir los 8 colores a Cartera + llavero y Llavero (falta que la dueña diga cuáles son)
+- Rellenar y activar la sección de Opiniones (está oculta) con opiniones reales
 - Fotos de producto nuevas, para sustituir las capturas de pantalla

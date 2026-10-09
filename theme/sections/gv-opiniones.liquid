@@ -1,0 +1,68 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+{% style %}
+  #shopify-section-{{ section.id }} .gv-op__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+  #shopify-section-{{ section.id }} .gv-op { background: #fff; border: 1px solid var(--gv-linea); border-radius: var(--gv-radio); padding: 28px; display: flex; flex-direction: column; gap: 14px; color: var(--gv-tinta); }
+  #shopify-section-{{ section.id }} .gv-op__stars { color: var(--gv-oro); font-size: 18px; letter-spacing: 2px; }
+  #shopify-section-{{ section.id }} .gv-op__stars span { color: rgba(28, 24, 16, .2); }
+  #shopify-section-{{ section.id }} .gv-op__txt { font-family: var(--gv-serif); font-size: 18px; line-height: 1.5; margin: 0; flex: 1; }
+  #shopify-section-{{ section.id }} .gv-op__who { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+  #shopify-section-{{ section.id }} .gv-op__who img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .gv-op__who small { display: block; opacity: .6; }
+  @media (max-width: 860px) { #shopify-section-{{ section.id }} .gv-op__grid { grid-template-columns: 1fr; } }
+{% endstyle %}
+
+<div class="gv gv-opiniones">
+  <div class="gv-wrap">
+    <div class="gv-center gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="gv-op__grid">
+      {%- for block in section.blocks -%}
+        <figure class="gv-op gv-reveal" style="margin:0; transition-delay: {{ forloop.index0 | times: 100 }}ms" {{ block.shopify_attributes }}>
+          <div class="gv-op__stars" aria-label="{{ block.settings.estrellas }} de 5 estrellas">
+            {%- for i in (1..5) -%}{% if i <= block.settings.estrellas %}★{% else %}<span>★</span>{% endif %}{%- endfor -%}
+          </div>
+          <blockquote class="gv-op__txt">“{{ block.settings.texto }}”</blockquote>
+          <figcaption class="gv-op__who">
+            {%- if block.settings.foto != blank -%}{{ block.settings.foto | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.nombre }}{%- endif -%}
+            <div><strong>{{ block.settings.nombre }}</strong>{%- if block.settings.detalle != blank -%}<small>{{ block.settings.detalle }}</small>{%- endif -%}</div>
+          </figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Opiniones",
+  "tag": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Pon aquí solo opiniones reales de tus clientes." },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Opiniones" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Lo que dicen nuestros clientes" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 44 },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#EFE4CF" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "opinion",
+      "name": "Opinión",
+      "settings": [
+        { "type": "range", "id": "estrellas", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "texto", "label": "Opinión" },
+        { "type": "text", "id": "nombre", "label": "Nombre del cliente" },
+        { "type": "text", "id": "detalle", "label": "Detalle (ej. producto que compró)" },
+        { "type": "image_picker", "id": "foto", "label": "Foto (opcional)" }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [ { "name": "Gravva · Opiniones" } ]
+}
+{% endschema %}

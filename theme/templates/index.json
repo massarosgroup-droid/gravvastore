@@ -29,25 +29,108 @@
     "garantias": {
       "type": "gv-garantias",
       "blocks": {
-        "g1": { "type": "garantia", "settings": { "icono": "✍️", "titulo": "Grabado gratis", "texto": "El nombre o las iniciales que quieras, en dorado." } },
-        "g2": { "type": "garantia", "settings": { "icono": "🚚", "titulo": "Envío con seguimiento", "texto": "Sigue tu pedido desde que sale hasta que llega." } },
-        "g3": { "type": "garantia", "settings": { "icono": "✅", "titulo": "Llega o te devolvemos el dinero", "texto": "Si no llega en el plazo indicado, te reembolsamos." } },
-        "g4": { "type": "garantia", "settings": { "icono": "🔒", "titulo": "Pago 100% seguro", "texto": "Tarjeta y métodos de pago protegidos." } }
+        "g1": {
+          "type": "garantia",
+          "settings": {
+            "icono": "✍️",
+            "titulo": "Grabado gratis",
+            "texto": "El nombre o las iniciales que quieras, en dorado."
+          }
+        },
+        "g2": {
+          "type": "garantia",
+          "settings": {
+            "icono": "🚚",
+            "titulo": "Envío con seguimiento",
+            "texto": "Sigue tu pedido desde que sale hasta que llega."
+          }
+        },
+        "g3": {
+          "type": "garantia",
+          "settings": {
+            "icono": "✅",
+            "titulo": "Llega o te devolvemos el dinero",
+            "texto": "Si no llega en el plazo indicado, te reembolsamos."
+          }
+        },
+        "g4": {
+          "type": "garantia",
+          "settings": {
+            "icono": "🔒",
+            "titulo": "Pago 100% seguro",
+            "texto": "Tarjeta y métodos de pago protegidos."
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3", "g4"],
-      "settings": { "titulo": "", "tam_titulo": 36, "color_fondo": "#F7F1E4", "color_texto": "#1C1810", "padding_top": 48, "padding_bottom": 48 }
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "settings": {
+        "titulo": "",
+        "tam_titulo": 36,
+        "color_fondo": "#F7F1E4",
+        "color_texto": "#1C1810",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
     },
     "productos": {
       "type": "gv-productos",
       "blocks": {
-        "p1": { "type": "producto", "settings": { "producto": "set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo", "etiqueta": "El favorito para regalar" } },
-        "p2": { "type": "producto", "settings": { "producto": "cartera-de-piel-personalizada-ultrafino-16-colores", "etiqueta": "4 colores" } },
-        "p3": { "type": "producto", "settings": { "producto": "tarjetero-de-piel-personalizado-con-nombre-llavero-a-juego", "etiqueta": "" } },
-        "p4": { "type": "producto", "settings": { "producto": "tarjetero-personalizado-nivel-basico-acabado-cocodrilo", "etiqueta": "" } },
-        "p5": { "type": "producto", "settings": { "producto": "llavero-de-piel-personalizado", "etiqueta": "" } },
-        "p6": { "type": "producto", "settings": { "producto": "portapasaporte-con-etiqueta-antiperdida-personalizable", "etiqueta": "Para viajar" } }
+        "p1": {
+          "type": "producto",
+          "settings": {
+            "producto": "set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo",
+            "etiqueta": "El favorito para regalar"
+          }
+        },
+        "p2": {
+          "type": "producto",
+          "settings": {
+            "producto": "cartera-de-piel-personalizada-ultrafino-16-colores",
+            "etiqueta": "4 colores"
+          }
+        },
+        "p3": {
+          "type": "producto",
+          "settings": {
+            "producto": "tarjetero-de-piel-personalizado-con-nombre-llavero-a-juego",
+            "etiqueta": ""
+          }
+        },
+        "p4": {
+          "type": "producto",
+          "settings": {
+            "producto": "tarjetero-personalizado-nivel-basico-acabado-cocodrilo",
+            "etiqueta": ""
+          }
+        },
+        "p5": {
+          "type": "producto",
+          "settings": {
+            "producto": "llavero-de-piel-personalizado",
+            "etiqueta": ""
+          }
+        },
+        "p6": {
+          "type": "producto",
+          "settings": {
+            "producto": "portapasaporte-con-etiqueta-antiperdida-personalizable",
+            "etiqueta": "Para viajar"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
       "settings": {
         "eyebrow": "La colección",
         "titulo": "Elige tu pieza",
@@ -66,11 +149,36 @@
     "pasos": {
       "type": "gv-pasos",
       "blocks": {
-        "s1": { "type": "paso", "settings": { "numero": "01", "titulo": "Elige pieza y color", "texto": "Cartera, tarjetero, llavero o el set completo en su caja de regalo." } },
-        "s2": { "type": "paso", "settings": { "numero": "02", "titulo": "Escribe el nombre", "texto": "El suyo, el tuyo o unas iniciales. Lo grabamos gratis en dorado." } },
-        "s3": { "type": "paso", "settings": { "numero": "03", "titulo": "Recíbelo listo para regalar", "texto": "Te llega con envío con seguimiento, preparado para sorprender." } }
+        "s1": {
+          "type": "paso",
+          "settings": {
+            "numero": "01",
+            "titulo": "Elige pieza y color",
+            "texto": "Cartera, tarjetero, llavero o el set completo en su caja de regalo."
+          }
+        },
+        "s2": {
+          "type": "paso",
+          "settings": {
+            "numero": "02",
+            "titulo": "Escribe el nombre",
+            "texto": "El suyo, el tuyo o unas iniciales. Lo grabamos gratis en dorado."
+          }
+        },
+        "s3": {
+          "type": "paso",
+          "settings": {
+            "numero": "03",
+            "titulo": "Recíbelo listo para regalar",
+            "texto": "Te llega con envío con seguimiento, preparado para sorprender."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "eyebrow": "Cómo funciona",
         "titulo": "Tu regalo personalizado en 3 pasos",
@@ -86,12 +194,37 @@
     "regalo": {
       "type": "gv-imagen-texto",
       "blocks": {
-        "i1": { "type": "punto", "settings": { "texto": "Piel con acabado croco que se nota al tacto" } },
-        "i2": { "type": "punto", "settings": { "texto": "Nombre grabado en dorado, gratis" } },
-        "i3": { "type": "punto", "settings": { "texto": "Ultrafina: cabe en cualquier bolsillo" } },
-        "i4": { "type": "punto", "settings": { "texto": "En negro, azul marino, rosa o rojo" } }
+        "i1": {
+          "type": "punto",
+          "settings": {
+            "texto": "Piel con acabado croco que se nota al tacto"
+          }
+        },
+        "i2": {
+          "type": "punto",
+          "settings": {
+            "texto": "Nombre grabado en dorado, gratis"
+          }
+        },
+        "i3": {
+          "type": "punto",
+          "settings": {
+            "texto": "Ultrafina: cabe en cualquier bolsillo"
+          }
+        },
+        "i4": {
+          "type": "punto",
+          "settings": {
+            "texto": "En negro, azul marino, rosa o rojo"
+          }
+        }
       },
-      "block_order": ["i1", "i2", "i3", "i4"],
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
       "settings": {
         "imagen": "shopify://shop_images/gravva-cartera-llavero-coche.jpg",
         "invertir": false,
@@ -111,12 +244,49 @@
     "ocasiones": {
       "type": "gv-ocasiones",
       "blocks": {
-        "o1": { "type": "ocasion", "settings": { "imagen": "shopify://shop_images/cartera-rosa-croco.png", "titulo": "Para ella", "texto": "Rosa o rojo, con su nombre", "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores" } },
-        "o2": { "type": "ocasion", "settings": { "imagen": "shopify://shop_images/cartera-negro-croco.png", "titulo": "Para él", "texto": "Negro o azul marino, siempre elegante", "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores" } },
-        "o3": { "type": "ocasion", "settings": { "imagen": "shopify://shop_images/gravva-set-caja-regalo.jpg", "titulo": "Para tu pareja", "texto": "El set en su caja de regalo", "url": "shopify://products/set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo" } },
-        "o4": { "type": "ocasion", "settings": { "imagen": "shopify://shop_images/image_2026-09-15_224348784.png", "titulo": "Para viajeros", "texto": "Portapasaporte personalizado", "url": "shopify://products/portapasaporte-con-etiqueta-antiperdida-personalizable" } }
+        "o1": {
+          "type": "ocasion",
+          "settings": {
+            "imagen": "shopify://shop_images/cartera-rosa-croco.png",
+            "titulo": "Para ella",
+            "texto": "Rosa o rojo, con su nombre",
+            "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores"
+          }
+        },
+        "o2": {
+          "type": "ocasion",
+          "settings": {
+            "imagen": "shopify://shop_images/cartera-negro-croco.png",
+            "titulo": "Para él",
+            "texto": "Negro o azul marino, siempre elegante",
+            "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores"
+          }
+        },
+        "o3": {
+          "type": "ocasion",
+          "settings": {
+            "imagen": "shopify://shop_images/gravva-set-caja-regalo.jpg",
+            "titulo": "Para tu pareja",
+            "texto": "El set en su caja de regalo",
+            "url": "shopify://products/set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo"
+          }
+        },
+        "o4": {
+          "type": "ocasion",
+          "settings": {
+            "imagen": "shopify://shop_images/image_2026-09-15_224348784.png",
+            "titulo": "Para viajeros",
+            "texto": "Portapasaporte personalizado",
+            "url": "shopify://products/portapasaporte-con-etiqueta-antiperdida-personalizable"
+          }
+        }
       },
-      "block_order": ["o1", "o2", "o3", "o4"],
+      "block_order": [
+        "o1",
+        "o2",
+        "o3",
+        "o4"
+      ],
       "settings": {
         "eyebrow": "Ideas de regalo",
         "titulo": "Un regalo para cada persona",
@@ -131,14 +301,57 @@
     "faq": {
       "type": "gv-faq",
       "blocks": {
-        "f1": { "type": "pregunta", "settings": { "pregunta": "¿El grabado tiene coste extra?", "respuesta": "<p>No. El grabado del nombre o las iniciales es totalmente gratis.</p>" } },
-        "f2": { "type": "pregunta", "settings": { "pregunta": "¿Qué puedo grabar?", "respuesta": "<p>Un nombre, unas iniciales o una palabra corta (hasta 12 letras). Lo escribes en la página del producto antes de añadirlo al carrito y verás una vista previa.</p>" } },
-        "f3": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda en llegar?", "respuesta": "<p>Cada pieza se graba por encargo. El envío tiene número de seguimiento y llega en unos 12-15 días.</p>" } },
-        "f4": { "type": "pregunta", "settings": { "pregunta": "¿Y si no llega a tiempo?", "respuesta": "<p>Si tu pedido no llega en el plazo indicado, te devolvemos el dinero.</p>" } },
-        "f5": { "type": "pregunta", "settings": { "pregunta": "¿Viene preparado para regalar?", "respuesta": "<p>Sí. El Set Cartera + Llavero Premium llega en su propia caja de regalo, lista para entregar.</p>" } },
-        "f6": { "type": "pregunta", "settings": { "pregunta": "¿Es seguro pagar en la web?", "respuesta": "<p>Sí. El pago se hace a través de la pasarela segura de Shopify; nunca vemos los datos de tu tarjeta.</p>" } }
+        "f1": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿El grabado tiene coste extra?",
+            "respuesta": "<p>No. El grabado del nombre o las iniciales es totalmente gratis.</p>"
+          }
+        },
+        "f2": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Qué puedo grabar?",
+            "respuesta": "<p>Un nombre, unas iniciales o una palabra corta (hasta 12 letras). Lo escribes en la página del producto antes de añadirlo al carrito y verás una vista previa.</p>"
+          }
+        },
+        "f3": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Cuánto tarda en llegar?",
+            "respuesta": "<p>Cada pieza se graba por encargo. El envío tiene número de seguimiento y llega en unos 12-15 días.</p>"
+          }
+        },
+        "f4": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Y si no llega a tiempo?",
+            "respuesta": "<p>Si tu pedido no llega en el plazo indicado, te devolvemos el dinero.</p>"
+          }
+        },
+        "f5": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Viene preparado para regalar?",
+            "respuesta": "<p>Sí. El Set Cartera + Llavero Premium llega en su propia caja de regalo, lista para entregar.</p>"
+          }
+        },
+        "f6": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "¿Es seguro pagar en la web?",
+            "respuesta": "<p>Sí. El pago se hace a través de la pasarela segura de Shopify; nunca vemos los datos de tu tarjeta.</p>"
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
       "settings": {
         "eyebrow": "Dudas",
         "titulo": "Preguntas frecuentes",
@@ -165,7 +378,64 @@
         "padding_top": 112,
         "padding_bottom": 112
       }
+    },
+    "opiniones": {
+      "type": "gv-opiniones",
+      "disabled": true,
+      "blocks": {
+        "r1": {
+          "type": "opinion",
+          "settings": {
+            "estrellas": 5,
+            "texto": "[Pega aquí una opinión real de un cliente]",
+            "nombre": "Nombre del cliente",
+            "detalle": "Producto que compró"
+          }
+        },
+        "r2": {
+          "type": "opinion",
+          "settings": {
+            "estrellas": 5,
+            "texto": "[Pega aquí una opinión real de un cliente]",
+            "nombre": "Nombre del cliente",
+            "detalle": "Producto que compró"
+          }
+        },
+        "r3": {
+          "type": "opinion",
+          "settings": {
+            "estrellas": 4,
+            "texto": "[Pega aquí una opinión real de un cliente]",
+            "nombre": "Nombre del cliente",
+            "detalle": "Producto que compró"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "Opiniones",
+        "titulo": "Lo que dicen nuestros clientes",
+        "tam_titulo": 44,
+        "color_fondo": "#EFE4CF",
+        "color_texto": "#1C1810",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
-  "order": ["hero", "garantias", "productos", "pasos", "regalo", "ocasiones", "faq", "cta"]
+  "order": [
+    "hero",
+    "garantias",
+    "productos",
+    "pasos",
+    "regalo",
+    "opiniones",
+    "ocasiones",
+    "faq",
+    "cta"
+  ]
 }
