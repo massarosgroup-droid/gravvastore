@@ -22,7 +22,7 @@
         "boton_agotado": "Agotado",
         "pago_rapido": false,
         "confianza_1_icono": "🚚",
-        "confianza_1": "Envío con seguimiento",
+        "confianza_1": "Envío gratis desde 50 €",
         "confianza_2_icono": "✍️",
         "confianza_2": "Grabado gratis",
         "confianza_3_icono": "🔒",
@@ -33,21 +33,48 @@
         "tab_descripcion": "Descripción",
         "abrir_descripcion": true,
         "tab2_titulo": "Envío y garantía",
-        "tab2_texto": "<p>🚚 Envío con número de seguimiento. Cada pieza se graba por encargo y llega en unos 12-15 días.</p><p>✅ Si no llega en el plazo indicado, te devolvemos el dinero.</p>",
+        "tab2_texto": "<p>🚚 Envío gratis a partir de 50 €. Por debajo, 2,99 €. Siempre con número de seguimiento.</p><p>Cada pieza se graba por encargo y llega en unos 12-15 días.</p><p>✅ Si no llega en el plazo indicado, te devolvemos el dinero.</p>",
         "tab3_titulo": "Sobre el grabado",
-        "tab3_texto": "<p>Grabamos en dorado el nombre, las iniciales o la palabra que escribas (hasta 12 letras), sin coste extra. Revisa bien cómo lo escribes: lo grabaremos tal cual.</p>",
+        "tab3_texto": "<p>Grabamos en dorado o plateado (tú eliges) el nombre, las iniciales o la palabra que escribas (hasta 12 letras), sin coste extra. Revisa bien cómo lo escribes: lo grabaremos tal cual.</p>",
         "padding_top": 40,
-        "padding_bottom": 72
+        "padding_bottom": 72,
+        "grabado_metal_activo": true,
+        "grabado_metal_titulo": "Color del grabado"
       }
     },
     "pasos": {
       "type": "gv-pasos",
       "blocks": {
-        "s1": { "type": "paso", "settings": { "numero": "01", "titulo": "Elige el color", "texto": "Toca un color y verás la foto de ese acabado." } },
-        "s2": { "type": "paso", "settings": { "numero": "02", "titulo": "Escribe el nombre", "texto": "Lo verás en la vista previa en dorado antes de comprar." } },
-        "s3": { "type": "paso", "settings": { "numero": "03", "titulo": "Lo grabamos y te lo enviamos", "texto": "Con seguimiento, listo para regalar." } }
+        "s1": {
+          "type": "paso",
+          "settings": {
+            "numero": "01",
+            "titulo": "Elige el color",
+            "texto": "Toca un color y verás la foto de ese acabado."
+          }
+        },
+        "s2": {
+          "type": "paso",
+          "settings": {
+            "numero": "02",
+            "titulo": "Escribe el nombre",
+            "texto": "Elige dorado o plateado y míralo en la vista previa antes de comprar."
+          }
+        },
+        "s3": {
+          "type": "paso",
+          "settings": {
+            "numero": "03",
+            "titulo": "Lo grabamos y te lo enviamos",
+            "texto": "Con seguimiento, listo para regalar."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "eyebrow": "Cómo funciona",
         "titulo": "Así de fácil",
@@ -79,5 +106,9 @@
       }
     }
   },
-  "order": ["main", "pasos", "related"]
+  "order": [
+    "main",
+    "pasos",
+    "related"
+  ]
 }

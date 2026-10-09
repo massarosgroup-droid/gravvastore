@@ -81,6 +81,8 @@
           btn.classList.add('is-selected');
           btn.setAttribute('aria-pressed', 'true');
           if (label) label.textContent = btn.getAttribute('data-value');
+          var box = root.querySelector('[data-gv-preview-box]');
+          if (box && btn.getAttribute('data-hex')) box.style.backgroundColor = btn.getAttribute('data-hex');
           update();
         });
       });
@@ -113,6 +115,14 @@
         });
       }
     }
+
+    // Grabado dorado o plateado
+    root.querySelectorAll('[data-metal]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        var strong = root.querySelector('[data-gv-preview]');
+        if (strong && radio.checked) strong.style.color = radio.getAttribute('data-metal');
+      });
+    });
 
     // Cantidad
     root.querySelectorAll('[data-gv-qty]').forEach(function (q) {

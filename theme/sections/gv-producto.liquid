@@ -10,6 +10,7 @@
   endif
   assign titulo = product.title | split: '|' | first | strip
   assign form_id = 'gv-form-' | append: section.id
+  assign preview_hex = ''
   assign colores = 'negro:#151515,azul:#1d2a4d,marino:#1d2a4d,rosa:#e7a9b8,rojo:#a3192b,marr:#6b4026,caf:#6b4026,beige:#d8c3a0,verde:#2f4a3a,gris:#8a8a8a,blanco:#f4f1ea,lila:#b9a3cf' | split: ','
 -%}
 
@@ -83,7 +84,8 @@
                       endfor
                     endif
                   -%}
-                  <button type="button" class="gv-sw__btn{% unless es_color %} gv-sw__btn--text{% endunless %}{% if value == option.selected_value %} is-selected{% endif %}" data-value="{{ value | escape }}" aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}">
+                  {%- if es_color and value == option.selected_value -%}{%- assign preview_hex = hex -%}{%- endif -%}
+                  <button type="button"{% if es_color %} data-hex="{{ hex }}"{% endif %} class="gv-sw__btn{% unless es_color %} gv-sw__btn--text{% endunless %}{% if value == option.selected_value %} is-selected{% endif %}" data-value="{{ value | escape }}" aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}">
                     {%- if es_color -%}<i style="background-color: {{ hex }};{% if foto != blank and section.settings.muestras_foto %} background-image: url('{{ foto }}');{% endif %}"></i>{%- endif -%}
                     {{ value }}
                   </button>
@@ -99,8 +101,15 @@
             <input id="gv-nombre-{{ section.id }}" type="text" name="properties[{{ section.settings.grabado_propiedad | default: 'Nombre a grabar' }}]" maxlength="{{ section.settings.grabado_max }}" placeholder="{{ section.settings.grabado_placeholder }}" autocomplete="off" {% if section.settings.grabado_obligatorio %}required{% endif %}>
             <div class="gv-engrave__meta"><span>{{ section.settings.grabado_nota }}</span><span><span data-gv-count>0</span>/{{ section.settings.grabado_max }}</span></div>
             <p class="gv-engrave__err">{{ section.settings.grabado_error }}</p>
+            {%- if section.settings.grabado_metal_activo -%}
+              <div class="gv-metal" role="radiogroup" aria-label="{{ section.settings.grabado_metal_titulo | escape }}">
+                <span class="gv-metal__label">{{ section.settings.grabado_metal_titulo }}</span>
+                <label class="gv-metal__opt"><input type="radio" name="properties[{{ section.settings.grabado_metal_titulo }}]" value="Dorado" data-metal="#C9A24B" checked><i style="background: linear-gradient(135deg, #f3dd9b, #c9a24b 55%, #8f6b22);"></i>Dorado</label>
+                <label class="gv-metal__opt"><input type="radio" name="properties[{{ section.settings.grabado_metal_titulo }}]" value="Plateado" data-metal="#D9DCE1"><i style="background: linear-gradient(135deg, #ffffff, #c9ccd1 55%, #8a8e95);"></i>Plateado</label>
+              </div>
+            {%- endif -%}
             {%- if section.settings.grabado_preview -%}
-              <div class="gv-engrave__preview">{{ section.settings.grabado_preview_texto }}<strong data-gv-preview>{{ section.settings.grabado_preview_ejemplo }}</strong></div>
+              <div class="gv-engrave__preview" data-gv-preview-box{% if preview_hex != blank %} style="background-color: {{ preview_hex }};"{% endif %}>{{ section.settings.grabado_preview_texto }}<strong data-gv-preview>{{ section.settings.grabado_preview_ejemplo }}</strong></div>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -195,7 +204,9 @@
     { "type": "range", "id": "grabado_max", "label": "Máximo de letras", "min": 4, "max": 30, "step": 1, "default": 12 },
     { "type": "text", "id": "grabado_nota", "label": "Nota bajo el campo", "default": "Revisa bien mayúsculas y tildes" },
     { "type": "text", "id": "grabado_error", "label": "Aviso si está vacío", "default": "Escribe el nombre que quieres grabar 😊" },
-    { "type": "checkbox", "id": "grabado_preview", "label": "Mostrar vista previa en dorado", "default": true },
+    { "type": "checkbox", "id": "grabado_metal_activo", "label": "Elegir grabado dorado o plateado", "default": true },
+    { "type": "text", "id": "grabado_metal_titulo", "label": "Título de la elección dorado/plateado", "default": "Color del grabado" },
+    { "type": "checkbox", "id": "grabado_preview", "label": "Mostrar vista previa del grabado", "default": true },
     { "type": "text", "id": "grabado_preview_texto", "label": "Texto de la vista previa", "default": "Así quedará tu grabado" },
     { "type": "text", "id": "grabado_preview_ejemplo", "label": "Nombre de ejemplo en la vista previa", "default": "Lisa" },
     { "type": "text", "id": "grabado_propiedad", "label": "Nombre del dato en el pedido", "default": "Nombre a grabar", "info": "Es lo que verás en cada pedido en tu panel." },

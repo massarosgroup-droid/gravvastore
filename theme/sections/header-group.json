@@ -8,7 +8,7 @@
         "a1": {
           "type": "announcement",
           "settings": {
-            "text": "✍️ Grabado personalizado GRATIS en todos los pedidos",
+            "text": "✍️ Grabado GRATIS en dorado o plateado",
             "link": ""
           }
         },
@@ -18,9 +18,17 @@
             "text": "🎁 5% de descuento en tu próxima compra a partir de 15€ · Código SEGUNDA5",
             "link": ""
           }
+        },
+        "a0": {
+          "type": "announcement",
+          "settings": {
+            "text": "🚚 Envío GRATIS a partir de 50 €",
+            "link": ""
+          }
         }
       },
       "block_order": [
+        "a0",
         "a1",
         "a2"
       ],

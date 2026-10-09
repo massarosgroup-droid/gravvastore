@@ -6,7 +6,7 @@
         "eyebrow": "Regalos de piel grabados con su nombre",
         "titulo": "Grábale su nombre.",
         "titulo_dorado": "Acierta siempre.",
-        "texto": "<p>Carteras, tarjeteros y llaveros de piel con acabado croco, personalizados con el nombre que tú elijas. Grabado en dorado gratis y listos para regalar.</p>",
+        "texto": "<p>Carteras, tarjeteros y llaveros de piel, personalizados con el nombre que tú elijas. Grabado en dorado o plateado gratis y listos para regalar.</p>",
         "tam_titulo": 68,
         "alineacion": "left",
         "boton1_texto": "Personalizar el mío",
@@ -17,7 +17,7 @@
         "punto_2": "Envío con seguimiento",
         "punto_3": "Listo para regalar",
         "imagen": "shopify://shop_images/gravva-portada-coleccion.jpg",
-        "etiqueta": "Grabado en dorado, con su nombre",
+        "etiqueta": "Grabado en dorado o plateado",
         "etiqueta_nombre": "",
         "color_fondo": "#0D0D0F",
         "color_texto": "#F7F1E4",
@@ -34,15 +34,15 @@
           "settings": {
             "icono": "✍️",
             "titulo": "Grabado gratis",
-            "texto": "El nombre o las iniciales que quieras, en dorado."
+            "texto": "El nombre o las iniciales que quieras, en dorado o plateado."
           }
         },
         "g2": {
           "type": "garantia",
           "settings": {
             "icono": "🚚",
-            "titulo": "Envío con seguimiento",
-            "texto": "Sigue tu pedido desde que sale hasta que llega."
+            "titulo": "Envío gratis desde 50 €",
+            "texto": "Con seguimiento. Por debajo de 50 €, solo 2,99 €."
           }
         },
         "g3": {
@@ -91,7 +91,7 @@
           "type": "producto",
           "settings": {
             "producto": "cartera-de-piel-personalizada-ultrafino-16-colores",
-            "etiqueta": "4 colores"
+            "etiqueta": ""
           }
         },
         "p3": {
@@ -105,7 +105,7 @@
           "type": "producto",
           "settings": {
             "producto": "tarjetero-personalizado-nivel-basico-acabado-cocodrilo",
-            "etiqueta": ""
+            "etiqueta": "Acabado croco · 4 colores"
           }
         },
         "p5": {
@@ -125,9 +125,9 @@
       },
       "block_order": [
         "p1",
+        "p4",
         "p2",
         "p3",
-        "p4",
         "p5",
         "p6"
       ],
@@ -162,7 +162,7 @@
           "settings": {
             "numero": "02",
             "titulo": "Escribe el nombre",
-            "texto": "El suyo, el tuyo o unas iniciales. Lo grabamos gratis en dorado."
+            "texto": "El suyo, el tuyo o unas iniciales. Lo grabamos gratis en dorado o plateado."
           }
         },
         "s3": {
@@ -203,7 +203,7 @@
         "i2": {
           "type": "punto",
           "settings": {
-            "texto": "Nombre grabado en dorado, gratis"
+            "texto": "Nombre grabado en dorado o plateado, gratis"
           }
         },
         "i3": {
@@ -232,8 +232,8 @@
         "titulo": "Un detalle que se usa todos los días",
         "tam_titulo": 46,
         "texto": "<p>No es un regalo que acaba en un cajón: lo llevará encima cada día, con su nombre.</p>",
-        "boton_texto": "Ver la cartera croco",
-        "boton_url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores",
+        "boton_texto": "Ver el tarjetero croco",
+        "boton_url": "shopify://products/tarjetero-personalizado-nivel-basico-acabado-cocodrilo",
         "boton_estilo": "oro",
         "color_fondo": "#12182B",
         "color_texto": "#F7F1E4",
@@ -250,7 +250,7 @@
             "imagen": "shopify://shop_images/cartera-rosa-croco.png",
             "titulo": "Para ella",
             "texto": "Rosa o rojo, con su nombre",
-            "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores"
+            "url": "shopify://products/tarjetero-personalizado-nivel-basico-acabado-cocodrilo"
           }
         },
         "o2": {
@@ -259,7 +259,7 @@
             "imagen": "shopify://shop_images/cartera-negro-croco.png",
             "titulo": "Para él",
             "texto": "Negro o azul marino, siempre elegante",
-            "url": "shopify://products/cartera-de-piel-personalizada-ultrafino-16-colores"
+            "url": "shopify://products/tarjetero-personalizado-nivel-basico-acabado-cocodrilo"
           }
         },
         "o3": {
@@ -305,7 +305,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿El grabado tiene coste extra?",
-            "respuesta": "<p>No. El grabado del nombre o las iniciales es totalmente gratis.</p>"
+            "respuesta": "<p>No. El grabado del nombre o las iniciales es totalmente gratis, en dorado o plateado, como prefieras.</p>"
           }
         },
         "f2": {
@@ -319,7 +319,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cuánto tarda en llegar?",
-            "respuesta": "<p>Cada pieza se graba por encargo. El envío tiene número de seguimiento y llega en unos 12-15 días.</p>"
+            "respuesta": "<p>Cada pieza se graba por encargo. El envío tiene número de seguimiento y llega en unos 12-15 días. Es gratis a partir de 50 €; por debajo, cuesta 2,99 €.</p>"
           }
         },
         "f4": {

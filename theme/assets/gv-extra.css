@@ -1,0 +1,10 @@
+/* Gravva — grabado dorado/plateado y vista previa por color */
+.gv-engrave__preview { transition: background-color .35s ease; }
+.gv-engrave__preview strong { transition: color .25s ease; }
+.gv-metal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.gv-metal__label { font-size: 13px; font-weight: 600; margin-right: 4px; }
+.gv-metal__opt { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 999px; border: 1px solid var(--gv-linea); background: #fff; cursor: pointer; font-size: 14px; color: var(--gv-tinta); }
+.gv-metal__opt input { position: absolute; opacity: 0; pointer-events: none; }
+.gv-metal__opt i { width: 22px; height: 22px; border-radius: 50%; display: block; border: 1px solid rgba(0, 0, 0, .15); }
+.gv-metal__opt:has(input:checked) { border-color: var(--gv-tinta); box-shadow: 0 0 0 1px var(--gv-tinta); }
+.gv-metal__opt:has(input:focus-visible) { outline: 2px solid var(--gv-oro); outline-offset: 2px; }
