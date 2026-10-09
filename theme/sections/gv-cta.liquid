@@ -1,0 +1,39 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-cta">
+  {%- if section.settings.imagen != blank -%}
+    <div class="gv-cta__bg">{{ section.settings.imagen | image_url: width: 1800 | image_tag: loading: 'lazy', alt: '' }}</div>
+  {%- endif -%}
+  <div class="gv-wrap">
+    <div class="gv-cta__inner gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+      {%- if section.settings.texto != blank -%}<div class="gv-lead">{{ section.settings.texto }}</div>{%- endif -%}
+      {%- if section.settings.boton_texto != blank -%}
+        <a class="gv-btn gv-btn--oro" href="{{ section.settings.boton_url | default: routes.all_products_collection_url }}">{{ section.settings.boton_texto }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Llamada final",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Foto de fondo (opcional)" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Grabado gratis" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Un regalo con su nombre no se olvida" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 54 },
+    { "type": "richtext", "id": "texto", "label": "Texto" },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Elegir mi regalo" },
+    { "type": "url", "id": "boton_url", "label": "Enlace del botón" },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#0D0D0F" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#F7F1E4" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 112 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 112 }
+  ],
+  "presets": [ { "name": "Gravva · Llamada final" } ]
+}
+{% endschema %}

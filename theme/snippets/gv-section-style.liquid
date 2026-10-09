@@ -1,0 +1,20 @@
+{%- comment -%} Espaciado y colores de cada sección, controlados desde el editor {%- endcomment -%}
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | default: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | default: 0 }}px;
+    {%- if section.settings.color_fondo != blank %} background: {{ section.settings.color_fondo }};{% endif %}
+    {%- if section.settings.color_texto != blank %} color: {{ section.settings.color_texto }};{% endif %}
+  }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top | default: 0 | times: 0.65 | round }}px;
+      padding-bottom: {{ section.settings.padding_bottom | default: 0 | times: 0.65 | round }}px;
+    }
+  }
+  #shopify-section-{{ section.id }} .gv { color: inherit; }
+  {%- if section.settings.tam_titulo %}
+  #shopify-section-{{ section.id }} .gv-h { font-size: {{ section.settings.tam_titulo }}px; }
+  @media (max-width: 749px) { #shopify-section-{{ section.id }} .gv-h { font-size: {{ section.settings.tam_titulo | times: 0.7 | round }}px; } }
+  {%- endif %}
+{% endstyle %}

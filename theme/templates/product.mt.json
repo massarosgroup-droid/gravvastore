@@ -1,0 +1,83 @@
+{
+  "sections": {
+    "main": {
+      "type": "gv-producto",
+      "settings": {
+        "eyebrow": "Gravva · Grabado gratis",
+        "texto_impuestos": "Impuestos incluidos. Grabado personalizado gratis.",
+        "muestras_foto": true,
+        "grabado_activo": true,
+        "grabado_obligatorio": true,
+        "grabado_titulo": "Nombre a grabar",
+        "grabado_ayuda": "(gratis)",
+        "grabado_placeholder": "Ej.: Lisa",
+        "grabado_max": 12,
+        "grabado_nota": "Revisa bien mayúsculas y tildes",
+        "grabado_error": "Escribe el nombre que quieres grabar 😊",
+        "grabado_preview": true,
+        "grabado_preview_texto": "Así quedará tu grabado",
+        "grabado_preview_ejemplo": "Lisa",
+        "grabado_propiedad": "Nombre a grabar",
+        "boton_texto": "Añadir al carrito",
+        "boton_agotado": "Agotado",
+        "pago_rapido": false,
+        "confianza_1_icono": "🚚",
+        "confianza_1": "Envío con seguimiento",
+        "confianza_2_icono": "✍️",
+        "confianza_2": "Grabado gratis",
+        "confianza_3_icono": "🔒",
+        "confianza_3": "Pago 100% seguro",
+        "complementario": "set-cartera-llavero-en-caja-de-regalo-nivel-premium-acabado-crocodrilo",
+        "complementario_titulo": "¿Lo quieres en caja de regalo?",
+        "complementario_cta": "Ver el set con llavero a juego →",
+        "tab_descripcion": "Descripción",
+        "abrir_descripcion": true,
+        "tab2_titulo": "Envío y garantía",
+        "tab2_texto": "<p>🚚 Envío con número de seguimiento. Cada pieza se graba por encargo y llega en unos 12-15 días.</p><p>✅ Si no llega en el plazo indicado, te devolvemos el dinero.</p>",
+        "tab3_titulo": "Sobre el grabado",
+        "tab3_texto": "<p>Grabamos en dorado el nombre, las iniciales o la palabra que escribas (hasta 12 letras), sin coste extra. Revisa bien cómo lo escribes: lo grabaremos tal cual.</p>",
+        "padding_top": 40,
+        "padding_bottom": 72
+      }
+    },
+    "pasos": {
+      "type": "gv-pasos",
+      "blocks": {
+        "s1": { "type": "paso", "settings": { "numero": "01", "titulo": "Elige el color", "texto": "Toca un color y verás la foto de ese acabado." } },
+        "s2": { "type": "paso", "settings": { "numero": "02", "titulo": "Escribe el nombre", "texto": "Lo verás en la vista previa en dorado antes de comprar." } },
+        "s3": { "type": "paso", "settings": { "numero": "03", "titulo": "Lo grabamos y te lo enviamos", "texto": "Con seguimiento, listo para regalar." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "eyebrow": "Cómo funciona",
+        "titulo": "Así de fácil",
+        "texto": "",
+        "tam_titulo": 40,
+        "ancla": "como-funciona",
+        "color_fondo": "#EFE4CF",
+        "color_texto": "#1C1810",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Combina con…",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": ["main", "pasos", "related"]
+}

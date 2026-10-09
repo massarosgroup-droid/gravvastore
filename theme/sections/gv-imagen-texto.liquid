@@ -1,0 +1,54 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-it{% if section.settings.invertir %} gv-it--invertido{% endif %}">
+  <div class="gv-wrap gv-it__grid">
+    <div class="gv-it__media gv-reveal">
+      {%- if section.settings.imagen != blank -%}
+        {{ section.settings.imagen | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '500, 800, 1200', sizes: '(min-width: 860px) 50vw, 100vw', alt: section.settings.imagen.alt }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag }}
+      {%- endif -%}
+    </div>
+    <div class="gv-it__text gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+      {%- if section.settings.texto != blank -%}<div class="gv-lead">{{ section.settings.texto }}</div>{%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="gv-it__list">
+          {%- for block in section.blocks -%}<li {{ block.shopify_attributes }}>{{ block.settings.texto }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if section.settings.boton_texto != blank -%}
+        <a class="gv-btn {% if section.settings.boton_estilo == 'navy' %}gv-btn--navy{% else %}gv-btn--oro{% endif %}" href="{{ section.settings.boton_url | default: routes.all_products_collection_url }}">{{ section.settings.boton_texto }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Imagen con texto",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Foto" },
+    { "type": "checkbox", "id": "invertir", "label": "Foto a la derecha", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "El regalo perfecto" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Llega en su caja, listo para sorprender" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 46 },
+    { "type": "richtext", "id": "texto", "label": "Texto" },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Ver el set de regalo" },
+    { "type": "url", "id": "boton_url", "label": "Enlace del botón" },
+    { "type": "select", "id": "boton_estilo", "label": "Estilo del botón", "options": [ { "value": "oro", "label": "Dorado" }, { "value": "navy", "label": "Azul marino" } ], "default": "oro" },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#12182B" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#F7F1E4" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    { "type": "punto", "name": "Punto de la lista", "settings": [ { "type": "text", "id": "texto", "label": "Texto", "default": "Punto destacado" } ] }
+  ],
+  "max_blocks": 8,
+  "presets": [ { "name": "Gravva · Imagen con texto" } ]
+}
+{% endschema %}

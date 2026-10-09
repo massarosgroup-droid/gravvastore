@@ -1,0 +1,84 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+{% style %}
+  #shopify-section-{{ section.id }} .gv-hero__grid { min-height: {{ section.settings.alto_min }}px; }
+  #shopify-section-{{ section.id }} .gv-hero { text-align: {{ section.settings.alineacion }}; }
+  {%- if section.settings.alineacion == 'center' %}
+  #shopify-section-{{ section.id }} .gv-hero__actions, #shopify-section-{{ section.id }} .gv-hero__mini { justify-content: center; }
+  {%- endif %}
+{% endstyle %}
+
+<div class="gv gv-hero">
+  <div class="gv-wrap gv-hero__grid">
+    <div class="gv-hero__text gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="gv-h">
+        {{ section.settings.titulo }}
+        {%- if section.settings.titulo_dorado != blank %}<br><em>{{ section.settings.titulo_dorado }}</em>{% endif -%}
+      </h1>
+      {%- if section.settings.texto != blank -%}<div class="gv-lead">{{ section.settings.texto }}</div>{%- endif -%}
+      <div class="gv-hero__actions">
+        {%- if section.settings.boton1_texto != blank -%}
+          <a class="gv-btn gv-btn--oro" href="{{ section.settings.boton1_url | default: routes.all_products_collection_url }}">{{ section.settings.boton1_texto }}</a>
+        {%- endif -%}
+        {%- if section.settings.boton2_texto != blank -%}
+          <a class="gv-btn gv-btn--linea" href="{{ section.settings.boton2_url | default: '#como-funciona' }}">{{ section.settings.boton2_texto }}</a>
+        {%- endif -%}
+      </div>
+      <div class="gv-hero__mini">
+        {%- for i in (1..3) -%}
+          {%- capture k %}punto_{{ i }}{% endcapture -%}
+          {%- if section.settings[k] != blank -%}<span>{{ section.settings[k] }}</span>{%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="gv-hero__media gv-reveal">
+      {%- if section.settings.imagen != blank -%}
+        {{ section.settings.imagen | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1600', sizes: '(min-width: 860px) 50vw, 100vw', alt: section.settings.imagen.alt }}
+      {%- else -%}
+        {{ 'product-apparel-1' | placeholder_svg_tag }}
+      {%- endif -%}
+      {%- if section.settings.etiqueta != blank -%}
+        <div class="gv-hero__badge">{{ section.settings.etiqueta }}{% if section.settings.etiqueta_nombre != blank %} <b>{{ section.settings.etiqueta_nombre }}</b>{% endif %}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Portada principal",
+  "tag": "section",
+  "class": "gv-section",
+  "settings": [
+    { "type": "header", "content": "Textos" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Regalos de piel grabados a mano" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Grábale su nombre." },
+    { "type": "text", "id": "titulo_dorado", "label": "Segunda línea del titular (en dorado)", "default": "Acierta siempre." },
+    { "type": "richtext", "id": "texto", "label": "Texto", "default": "<p>Carteras, tarjeteros y llaveros de piel con acabado croco, personalizados con el nombre que tú elijas. Grabado gratis y listos para regalar.</p>" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 32, "max": 96, "step": 2, "unit": "px", "default": 68 },
+    { "type": "select", "id": "alineacion", "label": "Alineación del texto", "options": [ { "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" } ], "default": "left" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "boton1_texto", "label": "Botón principal", "default": "Personalizar el mío" },
+    { "type": "url", "id": "boton1_url", "label": "Enlace del botón principal" },
+    { "type": "text", "id": "boton2_texto", "label": "Botón secundario", "default": "Cómo funciona" },
+    { "type": "url", "id": "boton2_url", "label": "Enlace del botón secundario" },
+    { "type": "header", "content": "Puntos pequeños" },
+    { "type": "text", "id": "punto_1", "label": "Punto 1", "default": "Grabado gratis" },
+    { "type": "text", "id": "punto_2", "label": "Punto 2", "default": "Envío con seguimiento" },
+    { "type": "text", "id": "punto_3", "label": "Punto 3", "default": "Listo para regalar" },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "imagen", "label": "Foto" },
+    { "type": "text", "id": "etiqueta", "label": "Etiqueta sobre la foto", "default": "Grabado en dorado:" },
+    { "type": "text", "id": "etiqueta_nombre", "label": "Nombre de ejemplo en la etiqueta", "default": "Lisa" },
+    { "type": "header", "content": "Diseño" },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#0D0D0F" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#F7F1E4" },
+    { "type": "range", "id": "alto_min", "label": "Altura mínima", "min": 400, "max": 900, "step": 20, "unit": "px", "default": 620 },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [ { "name": "Gravva · Portada principal" } ]
+}
+{% endschema %}

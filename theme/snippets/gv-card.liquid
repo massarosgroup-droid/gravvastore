@@ -1,0 +1,45 @@
+{%- comment -%} Tarjeta de producto Gravva. Recibe: product, etiqueta, cta, attrs, idx {%- endcomment -%}
+{%- liquid
+  assign colores = 'negro:#151515,azul:#1d2a4d,marino:#1d2a4d,rosa:#e7a9b8,rojo:#a3192b,marr:#6b4026,caf:#6b4026,beige:#d8c3a0,verde:#2f4a3a,gris:#8a8a8a,blanco:#f4f1ea,lila:#b9a3cf' | split: ','
+  assign opcion_color = nil
+  for o in product.options_with_values
+    assign n = o.name | downcase
+    if n contains 'color' or n contains 'colour'
+      assign opcion_color = o
+    endif
+  endfor
+-%}
+<a href="{{ product.url }}" class="gv-card gv-reveal" style="transition-delay: {{ idx | default: 0 | modulo: 4 | times: 90 }}ms" {{ attrs }}>
+  <div class="gv-card__img">
+    {%- if etiqueta != blank -%}<span class="gv-card__tag">{{ etiqueta }}</span>{%- endif -%}
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 990px) 33vw, 50vw', alt: product.title }}
+      {%- if product.media.size > 1 -%}
+        {{ product.media[1] | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 990px) 33vw, 50vw', alt: '' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+  <div class="gv-card__body">
+    <h3 class="gv-card__title">{{ product.title | split: '|' | first | strip }}</h3>
+    {%- if opcion_color -%}
+      <div class="gv-card__dots" aria-hidden="true">
+        {%- for v in opcion_color.values -%}
+          {%- assign vn = v | downcase -%}
+          {%- assign hex = '#c9a24b' -%}
+          {%- for c in colores -%}
+            {%- assign par = c | split: ':' -%}
+            {%- if vn contains par[0] -%}{%- assign hex = par[1] -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+          <i style="background: {{ hex }}"></i>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    <div class="gv-card__price">
+      {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money }}</s>{%- endif -%}
+      {%- if product.price_varies -%}Desde {% endif -%}{{ product.price | money }}
+    </div>
+    {%- if cta != blank -%}<span class="gv-card__cta">{{ cta }}</span>{%- endif -%}
+  </div>
+</a>

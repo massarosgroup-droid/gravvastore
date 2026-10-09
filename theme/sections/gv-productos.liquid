@@ -1,0 +1,74 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+{% style %}
+  #shopify-section-{{ section.id }} .gv-prods__grid { --gv-cols: {{ section.settings.columnas }}; }
+{% endstyle %}
+
+{%- liquid
+  assign coleccion = section.settings.coleccion
+  if coleccion == blank
+    assign coleccion = collections.all
+  endif
+-%}
+
+<div class="gv gv-prods">
+  <div class="gv-wrap">
+    <div class="gv-prods__head gv-reveal">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="gv-h" style="margin:0">{{ section.settings.titulo }}</h2>
+      </div>
+      {%- if section.settings.boton_texto != blank -%}
+        <a class="gv-btn gv-btn--linea" href="{{ coleccion.url | default: routes.all_products_collection_url }}">{{ section.settings.boton_texto }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="gv-prods__grid">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.producto != blank -%}
+            {% render 'gv-card', product: block.settings.producto, etiqueta: block.settings.etiqueta, cta: section.settings.cta_tarjeta, attrs: block.shopify_attributes, idx: forloop.index0 %}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for p in coleccion.products limit: section.settings.limite -%}
+          {% render 'gv-card', product: p, cta: section.settings.cta_tarjeta, idx: forloop.index0 %}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Productos",
+  "tag": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Añade bloques de producto para elegir cuáles salen y en qué orden. Si no añades ninguno, se muestran los de la colección." },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "La colección" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Elige tu pieza" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 44 },
+    { "type": "collection", "id": "coleccion", "label": "Colección" },
+    { "type": "range", "id": "limite", "label": "Productos a mostrar", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "range", "id": "columnas", "label": "Columnas en ordenador", "min": 2, "max": 4, "step": 1, "default": 3 },
+    { "type": "text", "id": "cta_tarjeta", "label": "Texto en cada tarjeta", "default": "Personalizar →" },
+    { "type": "text", "id": "boton_texto", "label": "Botón ver todo", "default": "Ver todo" },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#EFE4CF" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "producto",
+      "name": "Producto",
+      "settings": [
+        { "type": "product", "id": "producto", "label": "Producto" },
+        { "type": "text", "id": "etiqueta", "label": "Etiqueta (ej. Más vendido)" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [ { "name": "Gravva · Productos" } ]
+}
+{% endschema %}

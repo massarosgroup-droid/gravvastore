@@ -1,0 +1,229 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  if product.selected_variant and product.selected_variant.featured_media
+    assign main_media = product.selected_variant.featured_media
+  else
+    assign main_media = product.featured_media
+  endif
+  assign titulo = product.title | split: '|' | first | strip
+  assign form_id = 'gv-form-' | append: section.id
+  assign colores = 'negro:#151515,azul:#1d2a4d,marino:#1d2a4d,rosa:#e7a9b8,rojo:#a3192b,marr:#6b4026,caf:#6b4026,beige:#d8c3a0,verde:#2f4a3a,gris:#8a8a8a,blanco:#f4f1ea,lila:#b9a3cf' | split: ','
+-%}
+
+<div class="gv gv-pdp" data-gv-product data-money-format="{{ shop.money_format | strip_html | escape }}">
+  <div class="gv-wrap gv-pdp__grid">
+
+    {%- comment -%} Galería {%- endcomment -%}
+    <div class="gv-gal">
+      <div class="gv-gal__main" data-gv-main>
+        {%- if main_media -%}
+          {{ main_media | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1400', sizes: '(min-width: 860px) 55vw, 100vw', alt: titulo }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="gv-gal__thumbs">
+          {%- for m in product.media -%}
+            {%- if m.media_type == 'image' -%}
+              <button type="button" class="gv-gal__thumb{% if m.id == main_media.id %} is-active{% endif %}" data-gv-thumb data-media-id="{{ m.id }}" data-full="{{ m | image_url: width: 1400 }}" aria-label="Ver foto {{ forloop.index }}">
+                {{ m | image_url: width: 180 | image_tag: loading: 'lazy', alt: '' }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Compra {%- endcomment -%}
+    <div class="gv-buy">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="gv-buy__title">{{ titulo }}</h1>
+      <p class="gv-buy__price" data-gv-price>
+        {%- if current.compare_at_price > current.price -%}<s>{{ current.compare_at_price | money }}</s>{%- endif -%}
+        {{ current.price | money }}
+      </p>
+      <p class="gv-buy__tax">{{ section.settings.texto_impuestos }}</p>
+      {%- if section.settings.subtitulo != blank -%}<div class="gv-buy__sub">{{ section.settings.subtitulo }}</div>{%- endif -%}
+
+      {% form 'product', product, id: form_id %}
+        <input type="hidden" name="id" value="{{ current.id }}" data-gv-id>
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            {%- assign opt_idx = forloop.index0 -%}
+            {%- assign on = option.name | downcase -%}
+            {%- assign es_color = false -%}
+            {%- if on contains 'color' or on contains 'colour' -%}{%- assign es_color = true -%}{%- endif -%}
+            <div class="gv-buy__block">
+              <span class="gv-buy__label">{{ option.name }}: <span data-gv-option-value>{{ option.selected_value }}</span></span>
+              <div class="gv-sw" data-gv-option role="group" aria-label="{{ option.name }}">
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign vn = value | downcase
+                    assign hex = ''
+                    assign foto = ''
+                    if es_color
+                      assign hex = '#c9a24b'
+                      for c in colores
+                        assign par = c | split: ':'
+                        if vn contains par[0]
+                          assign hex = par[1]
+                          break
+                        endif
+                      endfor
+                      for v in product.variants
+                        if v.options[opt_idx] == value and v.featured_media
+                          assign foto = v.featured_media | image_url: width: 80
+                          break
+                        endif
+                      endfor
+                    endif
+                  -%}
+                  <button type="button" class="gv-sw__btn{% unless es_color %} gv-sw__btn--text{% endunless %}{% if value == option.selected_value %} is-selected{% endif %}" data-value="{{ value | escape }}" aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}">
+                    {%- if es_color -%}<i style="background-color: {{ hex }};{% if foto != blank and section.settings.muestras_foto %} background-image: url('{{ foto }}');{% endif %}"></i>{%- endif -%}
+                    {{ value }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        {%- if section.settings.grabado_activo -%}
+          <div class="gv-buy__block gv-engrave" data-gv-engrave>
+            <label class="gv-buy__label" for="gv-nombre-{{ section.id }}">{{ section.settings.grabado_titulo }}{% if section.settings.grabado_ayuda != blank %} <span>{{ section.settings.grabado_ayuda }}</span>{% endif %}</label>
+            <input id="gv-nombre-{{ section.id }}" type="text" name="properties[{{ section.settings.grabado_propiedad | default: 'Nombre a grabar' }}]" maxlength="{{ section.settings.grabado_max }}" placeholder="{{ section.settings.grabado_placeholder }}" autocomplete="off" {% if section.settings.grabado_obligatorio %}required{% endif %}>
+            <div class="gv-engrave__meta"><span>{{ section.settings.grabado_nota }}</span><span><span data-gv-count>0</span>/{{ section.settings.grabado_max }}</span></div>
+            <p class="gv-engrave__err">{{ section.settings.grabado_error }}</p>
+            {%- if section.settings.grabado_preview -%}
+              <div class="gv-engrave__preview">{{ section.settings.grabado_preview_texto }}<strong data-gv-preview>{{ section.settings.grabado_preview_ejemplo }}</strong></div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div class="gv-buy__block gv-buy__row">
+          <div class="gv-qty" data-gv-qty>
+            <button type="button" data-step="-1" aria-label="Quitar uno">−</button>
+            <input type="number" name="quantity" value="1" min="1" aria-label="Cantidad">
+            <button type="button" data-step="1" aria-label="Añadir uno">+</button>
+          </div>
+          <button type="submit" name="add" class="gv-btn gv-btn--navy gv-buy__add" data-gv-add data-label="{{ section.settings.boton_texto | escape }}" data-soldout="{{ section.settings.boton_agotado | escape }}"{% unless current.available %} disabled{% endunless %}>
+            {%- if current.available -%}{{ section.settings.boton_texto }}{%- else -%}{{ section.settings.boton_agotado }}{%- endif -%}
+          </button>
+        </div>
+        {%- if section.settings.pago_rapido -%}{{ form | payment_button }}{%- endif -%}
+      {% endform %}
+
+      <div class="gv-trust">
+        {%- for i in (1..3) -%}
+          {%- capture ki %}confianza_{{ i }}_icono{% endcapture -%}
+          {%- capture kt %}confianza_{{ i }}{% endcapture -%}
+          {%- if section.settings[kt] != blank -%}<div><b>{{ section.settings[ki] }}</b>{{ section.settings[kt] }}</div>{%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- assign extra = section.settings.complementario -%}
+      {%- if extra != blank and extra.id != product.id -%}
+        <a class="gv-upsell" href="{{ extra.url }}">
+          {%- if extra.featured_media -%}{{ extra.featured_media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+          <p><strong>{{ section.settings.complementario_titulo }}</strong>{{ extra.title | split: '|' | first | strip }} · {{ extra.price | money }}<br><span>{{ section.settings.complementario_cta }}</span></p>
+        </a>
+      {%- endif -%}
+
+      <div class="gv-desc">
+        {%- if product.description != blank -%}
+          <details{% if section.settings.abrir_descripcion %} open{% endif %}>
+            <summary>{{ section.settings.tab_descripcion }}</summary>
+            <div class="gv-desc__body">{{ product.description }}</div>
+          </details>
+        {%- endif -%}
+        {%- if section.settings.tab2_titulo != blank -%}
+          <details><summary>{{ section.settings.tab2_titulo }}</summary><div class="gv-desc__body">{{ section.settings.tab2_texto }}</div></details>
+        {%- endif -%}
+        {%- if section.settings.tab3_titulo != blank -%}
+          <details><summary>{{ section.settings.tab3_titulo }}</summary><div class="gv-desc__body">{{ section.settings.tab3_texto }}</div></details>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-gv-variants>
+    [
+      {%- for v in product.variants -%}
+        {
+          "id": {{ v.id | json }},
+          "options": {{ v.options | json }},
+          "price": {{ v.price | json }},
+          "compare": {{ v.compare_at_price | default: 0 | json }},
+          "available": {{ v.available | json }},
+          "media": {% if v.featured_media %}{{ v.featured_media.id | json }}{% else %}null{% endif %},
+          "image": {% if v.featured_media %}{{ v.featured_media | image_url: width: 1400 | json }}{% else %}null{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</div>
+
+<div class="gv gv-sticky" data-gv-sticky>
+  <div class="gv-sticky__t"><b>{{ titulo }}</b><span data-gv-sticky-price>{{ current.price | money }}</span></div>
+  <button type="button" class="gv-btn gv-btn--navy" data-gv-add data-label="{{ section.settings.boton_texto | escape }}" data-soldout="{{ section.settings.boton_agotado | escape }}"{% unless current.available %} disabled{% endunless %}>
+    {%- if current.available -%}{{ section.settings.boton_texto }}{%- else -%}{{ section.settings.boton_agotado }}{%- endif -%}
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Ficha de producto",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Textos" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño sobre el título", "default": "Gravva · Grabado gratis" },
+    { "type": "richtext", "id": "subtitulo", "label": "Texto bajo el precio (igual en todos los productos)" },
+    { "type": "text", "id": "texto_impuestos", "label": "Nota bajo el precio", "default": "Impuestos incluidos. Grabado personalizado gratis." },
+    { "type": "header", "content": "Colores" },
+    { "type": "checkbox", "id": "muestras_foto", "label": "Usar la foto de cada color en el circulito", "default": true },
+    { "type": "header", "content": "Nombre a grabar" },
+    { "type": "checkbox", "id": "grabado_activo", "label": "Mostrar campo de nombre", "default": true },
+    { "type": "checkbox", "id": "grabado_obligatorio", "label": "Obligatorio para comprar", "default": true },
+    { "type": "text", "id": "grabado_titulo", "label": "Título del campo", "default": "Nombre a grabar" },
+    { "type": "text", "id": "grabado_ayuda", "label": "Ayuda junto al título", "default": "(gratis)" },
+    { "type": "text", "id": "grabado_placeholder", "label": "Ejemplo dentro del campo", "default": "Ej.: Lisa" },
+    { "type": "range", "id": "grabado_max", "label": "Máximo de letras", "min": 4, "max": 30, "step": 1, "default": 12 },
+    { "type": "text", "id": "grabado_nota", "label": "Nota bajo el campo", "default": "Revisa bien mayúsculas y tildes" },
+    { "type": "text", "id": "grabado_error", "label": "Aviso si está vacío", "default": "Escribe el nombre que quieres grabar 😊" },
+    { "type": "checkbox", "id": "grabado_preview", "label": "Mostrar vista previa en dorado", "default": true },
+    { "type": "text", "id": "grabado_preview_texto", "label": "Texto de la vista previa", "default": "Así quedará tu grabado" },
+    { "type": "text", "id": "grabado_preview_ejemplo", "label": "Nombre de ejemplo en la vista previa", "default": "Lisa" },
+    { "type": "text", "id": "grabado_propiedad", "label": "Nombre del dato en el pedido", "default": "Nombre a grabar", "info": "Es lo que verás en cada pedido en tu panel." },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Añadir al carrito" },
+    { "type": "text", "id": "boton_agotado", "label": "Texto si está agotado", "default": "Agotado" },
+    { "type": "checkbox", "id": "pago_rapido", "label": "Mostrar botón de pago rápido", "default": false, "info": "El pago rápido salta el campo de nombre si no se rellena, por eso viene desactivado." },
+    { "type": "header", "content": "Fila de confianza" },
+    { "type": "text", "id": "confianza_1_icono", "label": "Icono 1", "default": "🚚" },
+    { "type": "text", "id": "confianza_1", "label": "Texto 1", "default": "Envío con seguimiento" },
+    { "type": "text", "id": "confianza_2_icono", "label": "Icono 2", "default": "✍️" },
+    { "type": "text", "id": "confianza_2", "label": "Texto 2", "default": "Grabado gratis" },
+    { "type": "text", "id": "confianza_3_icono", "label": "Icono 3", "default": "🔒" },
+    { "type": "text", "id": "confianza_3", "label": "Texto 3", "default": "Pago 100% seguro" },
+    { "type": "header", "content": "Producto recomendado" },
+    { "type": "product", "id": "complementario", "label": "Producto a recomendar" },
+    { "type": "text", "id": "complementario_titulo", "label": "Título", "default": "¿Lo quieres en caja de regalo?" },
+    { "type": "text", "id": "complementario_cta", "label": "Texto del enlace", "default": "Ver el set →" },
+    { "type": "header", "content": "Pestañas de información" },
+    { "type": "text", "id": "tab_descripcion", "label": "Título de la descripción", "default": "Descripción" },
+    { "type": "checkbox", "id": "abrir_descripcion", "label": "Descripción abierta al entrar", "default": true },
+    { "type": "text", "id": "tab2_titulo", "label": "Pestaña 2: título", "default": "Envío y devoluciones" },
+    { "type": "richtext", "id": "tab2_texto", "label": "Pestaña 2: texto", "default": "<p>Envío con número de seguimiento. Cada pieza se graba por encargo, así que tarda unos días más que un envío normal.</p>" },
+    { "type": "text", "id": "tab3_titulo", "label": "Pestaña 3: título", "default": "Sobre el grabado" },
+    { "type": "richtext", "id": "tab3_texto", "label": "Pestaña 3: texto", "default": "<p>Grabamos en dorado el nombre o las iniciales que escribas, sin coste extra.</p>" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 72 }
+  ]
+}
+{% endschema %}

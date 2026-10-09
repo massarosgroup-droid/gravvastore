@@ -1,0 +1,61 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-pasos" id="{{ section.settings.ancla | default: 'como-funciona' }}">
+  <div class="gv-wrap">
+    <div class="gv-center gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+      {%- if section.settings.texto != blank -%}<div class="gv-lead">{{ section.settings.texto }}</div>{%- endif -%}
+    </div>
+    <div class="gv-pasos__grid">
+      {%- for block in section.blocks -%}
+        <div class="gv-paso gv-reveal" style="transition-delay: {{ forloop.index0 | times: 120 }}ms" {{ block.shopify_attributes }}>
+          <span class="gv-paso__num">{{ block.settings.numero | default: forloop.index }}</span>
+          <h3>{{ block.settings.titulo }}</h3>
+          <p>{{ block.settings.texto }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Cómo funciona",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Cómo funciona" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Tu regalo personalizado en 3 pasos" },
+    { "type": "richtext", "id": "texto", "label": "Texto" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 44 },
+    { "type": "text", "id": "ancla", "label": "Nombre del ancla (para enlazar)", "default": "como-funciona" },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#F7F1E4" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "numero", "label": "Número o símbolo" },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Paso" },
+        { "type": "textarea", "id": "texto", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Gravva · Cómo funciona",
+      "blocks": [
+        { "type": "paso", "settings": { "titulo": "Elige pieza y color", "texto": "Cartera, tarjetero, llavero o el set completo en su caja de regalo." } },
+        { "type": "paso", "settings": { "titulo": "Escribe el nombre", "texto": "El suyo, el tuyo o unas iniciales. Lo grabamos gratis en dorado." } },
+        { "type": "paso", "settings": { "titulo": "Recíbelo listo para regalar", "texto": "Te llega con envío con seguimiento, preparado para sorprender." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

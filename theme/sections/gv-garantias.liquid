@@ -1,0 +1,49 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-garantias">
+  <div class="gv-wrap">
+    {%- if section.settings.titulo != blank -%}
+      <div class="gv-center gv-reveal" style="margin-bottom:40px"><h2 class="gv-h">{{ section.settings.titulo }}</h2></div>
+    {%- endif -%}
+    <div class="gv-gar__grid">
+      {%- for block in section.blocks -%}
+        <div class="gv-gar gv-reveal" style="transition-delay: {{ forloop.index0 | times: 90 }}ms" {{ block.shopify_attributes }}>
+          <span class="gv-gar__ico" aria-hidden="true">{{ block.settings.icono }}</span>
+          <div>
+            <h3>{{ block.settings.titulo }}</h3>
+            <p>{{ block.settings.texto }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Garantías",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Titular (opcional)" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 36 },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#F7F1E4" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "garantia",
+      "name": "Garantía",
+      "settings": [
+        { "type": "text", "id": "icono", "label": "Icono (emoji o símbolo)", "default": "✦" },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Garantía" },
+        { "type": "textarea", "id": "texto", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [ { "name": "Gravva · Garantías" } ]
+}
+{% endschema %}

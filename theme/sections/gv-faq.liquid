@@ -1,0 +1,62 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-faq">
+  <div class="gv-wrap">
+    <div class="gv-center gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="gv-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="gv-faq__item"{% if forloop.first and section.settings.abrir_primera %} open{% endif %} {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.pregunta }}</summary>
+          <div class="gv-faq__a">{{ block.settings.respuesta }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in section.blocks -%}
+    { "@type": "Question", "name": {{ block.settings.pregunta | json }}, "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.respuesta | strip_html | json }} } }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Gravva · Preguntas frecuentes",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Dudas" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Preguntas frecuentes" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 44 },
+    { "type": "checkbox", "id": "abrir_primera", "label": "Primera pregunta abierta", "default": true },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#F7F1E4" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "pregunta",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Pregunta?" },
+        { "type": "richtext", "id": "respuesta", "label": "Respuesta", "default": "<p>Respuesta.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [ { "name": "Gravva · Preguntas frecuentes" } ]
+}
+{% endschema %}

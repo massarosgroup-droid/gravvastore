@@ -1,0 +1,58 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+
+<div class="gv gv-ocasiones">
+  <div class="gv-wrap">
+    <div class="gv-center gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="gv-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="gv-h">{{ section.settings.titulo }}</h2>
+      {%- if section.settings.texto != blank -%}<div class="gv-lead">{{ section.settings.texto }}</div>{%- endif -%}
+    </div>
+    <div class="gv-ocas__grid">
+      {%- for block in section.blocks -%}
+        <a class="gv-ocas gv-reveal" href="{{ block.settings.url | default: routes.all_products_collection_url }}" style="transition-delay: {{ forloop.index0 | times: 100 }}ms" {{ block.shopify_attributes }}>
+          {%- if block.settings.imagen != blank -%}
+            {{ block.settings.imagen | image_url: width: 700 | image_tag: loading: 'lazy', widths: '350, 500, 700', sizes: '(min-width: 990px) 25vw, 50vw', alt: block.settings.titulo }}
+          {%- else -%}
+            <div class="gv-ocas__ph">{{ block.settings.titulo | slice: 0 }}</div>
+          {%- endif -%}
+          <div class="gv-ocas__txt">
+            <h3>{{ block.settings.titulo }}</h3>
+            {%- if block.settings.texto != blank -%}<p>{{ block.settings.texto }}</p>{%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Regalos para…",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Ideas de regalo" },
+    { "type": "text", "id": "titulo", "label": "Titular", "default": "Un regalo para cada persona" },
+    { "type": "richtext", "id": "texto", "label": "Texto" },
+    { "type": "range", "id": "tam_titulo", "label": "Tamaño del titular", "min": 24, "max": 72, "step": 2, "unit": "px", "default": 44 },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#F7F1E4" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "ocasion",
+      "name": "Ocasión",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Foto" },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Para él" },
+        { "type": "text", "id": "texto", "label": "Texto corto" },
+        { "type": "url", "id": "url", "label": "Enlace" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [ { "name": "Gravva · Regalos para…" } ]
+}
+{% endschema %}
