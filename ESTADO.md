@@ -39,3 +39,4 @@ una vista previa en dorado y el cambio de foto al elegir el color.
 - Tarjetero croco (título actual: "Cartera acabado croco personalizada"): fotos nuevas (portada verde "Marc" + 1 por color) y 9 colores: Negro, Marrón, Burdeos, Fucsia, Lila, Azul Cielo, Azul Royal, Azul Marino, Verde. Fotos antiguas quitadas del producto (siguen en Archivos).
 - Copia "Gravva v2": colores de la vista previa para los 9 tonos y textos de portada "9 colores".
 - Pie de página (copia v2): franja "Pagos y envíos" con métodos de pago automáticos de Shopify, transportistas Correos/Ecoscooting/CTT/GLS y sello de pago seguro
+- Logos oficiales de Correos y GLS (traídos de Wikimedia, en Archivos: 500px-Correos_logo_svg.png, 500px-GLS_Logo_2021_svg.png); CTT y Ecoscooting siguen como nombre en color
