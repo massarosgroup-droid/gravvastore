@@ -1,0 +1,86 @@
+{% render 'gv-assets' %}
+{% render 'gv-section-style', section: section %}
+{% style %}
+  #shopify-section-{{ section.id }} .gv-pe { display: grid; grid-template-columns: 1.1fr 1.1fr .8fr; gap: 40px; }
+  #shopify-section-{{ section.id }} .gv-pe h3 { font-family: var(--gv-serif); font-weight: 400; font-size: 22px; margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid currentColor; border-color: rgba(127, 127, 127, .3); }
+  #shopify-section-{{ section.id }} .gv-pe__list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
+  #shopify-section-{{ section.id }} .gv-pe__pay svg { height: 30px; width: auto; display: block; border-radius: 6px; }
+  #shopify-section-{{ section.id }} .gv-pe__logo { height: 44px; min-width: 96px; padding: 0 16px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--gv-sans); font-weight: 800; font-size: 16px; letter-spacing: .02em; box-shadow: 0 1px 0 rgba(0, 0, 0, .08); }
+  #shopify-section-{{ section.id }} .gv-pe__logo img { max-height: 30px; max-width: 110px; width: auto; display: block; }
+  #shopify-section-{{ section.id }} .gv-pe__seal { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 1.4; }
+  #shopify-section-{{ section.id }} .gv-pe__seal b { display: block; font-size: 15px; }
+  #shopify-section-{{ section.id }} .gv-pe__seal span.ico { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gv-oro); color: var(--gv-oro); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  #shopify-section-{{ section.id }} .gv-pe__note { font-size: 13px; opacity: .7; margin: 12px 0 0; }
+  @media (max-width: 860px) { #shopify-section-{{ section.id }} .gv-pe { grid-template-columns: 1fr; gap: 30px; } }
+{% endstyle %}
+
+<div class="gv">
+  <div class="gv-wrap gv-pe">
+    <div>
+      <h3>{{ section.settings.titulo_pago }}</h3>
+      <ul class="gv-pe__list gv-pe__pay" role="list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li>{{ type | payment_type_svg_tag }}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div>
+      <h3>{{ section.settings.titulo_envio }}</h3>
+      <ul class="gv-pe__list" role="list">
+        {%- for block in section.blocks -%}
+          <li class="gv-pe__logo" style="background: {{ block.settings.fondo }}; color: {{ block.settings.texto_color }};" title="{{ block.settings.nombre | escape }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.logo != blank -%}
+              {{ block.settings.logo | image_url: height: 60 | image_tag: loading: 'lazy', alt: block.settings.nombre }}
+            {%- else -%}
+              {{ block.settings.nombre }}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if section.settings.nota_envio != blank -%}<p class="gv-pe__note">{{ section.settings.nota_envio }}</p>{%- endif -%}
+    </div>
+
+    <div>
+      <h3>{{ section.settings.titulo_seguridad }}</h3>
+      <div class="gv-pe__seal">
+        <span class="ico" aria-hidden="true">🔒</span>
+        <div><b>{{ section.settings.sello_titulo }}</b>{{ section.settings.sello_texto }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gravva · Pagos y envíos",
+  "tag": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Los métodos de pago salen solos según los que tengas activados en Shopify." },
+    { "type": "text", "id": "titulo_pago", "label": "Título pagos", "default": "Métodos de pago" },
+    { "type": "text", "id": "titulo_envio", "label": "Título envíos", "default": "Métodos de envío" },
+    { "type": "text", "id": "nota_envio", "label": "Nota bajo los envíos", "default": "Envío gratis a partir de 50 €" },
+    { "type": "text", "id": "titulo_seguridad", "label": "Título seguridad", "default": "Compra segura" },
+    { "type": "text", "id": "sello_titulo", "label": "Sello: título", "default": "Pago 100% seguro" },
+    { "type": "text", "id": "sello_texto", "label": "Sello: texto", "default": "Conexión cifrada y pasarela de pago de Shopify." },
+    { "type": "color", "id": "color_fondo", "label": "Color de fondo", "default": "#F7F1E4" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#1C1810" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "transportista",
+      "name": "Transportista",
+      "settings": [
+        { "type": "text", "id": "nombre", "label": "Nombre", "default": "Transportista" },
+        { "type": "image_picker", "id": "logo", "label": "Logo (opcional; si no, se muestra el nombre)" },
+        { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#FFFFFF" },
+        { "type": "color", "id": "texto_color", "label": "Color del nombre", "default": "#1C1810" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [ { "name": "Gravva · Pagos y envíos" } ]
+}
+{% endschema %}

@@ -2,6 +2,61 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "pagos": {
+      "type": "gv-pagos-envios",
+      "blocks": {
+        "c1": {
+          "type": "transportista",
+          "settings": {
+            "nombre": "Correos",
+            "fondo": "#FFCD00",
+            "texto_color": "#002E6D"
+          }
+        },
+        "c2": {
+          "type": "transportista",
+          "settings": {
+            "nombre": "Ecoscooting",
+            "fondo": "#E6F4EA",
+            "texto_color": "#1B7A3A"
+          }
+        },
+        "c3": {
+          "type": "transportista",
+          "settings": {
+            "nombre": "CTT",
+            "fondo": "#DF0024",
+            "texto_color": "#FFFFFF"
+          }
+        },
+        "c4": {
+          "type": "transportista",
+          "settings": {
+            "nombre": "GLS",
+            "fondo": "#061AB1",
+            "texto_color": "#FFD100"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "titulo_pago": "Métodos de pago",
+        "titulo_envio": "Métodos de envío",
+        "nota_envio": "Envío gratis a partir de 50 €",
+        "titulo_seguridad": "Compra segura",
+        "sello_titulo": "Pago 100% seguro",
+        "sello_texto": "Conexión cifrada y pasarela de pago de Shopify.",
+        "color_fondo": "#F7F1E4",
+        "color_texto": "#1C1810",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -9,7 +64,7 @@
           "type": "text",
           "settings": {
             "heading": "Gravva",
-            "subtext": "<p>Regalos de piel grabados con su nombre. Grabado en dorado gratis, envío con seguimiento y pago seguro.</p>"
+            "subtext": "<p>Regalos de piel grabados con su nombre. Grabados gratis, envío con seguimiento y pago seguro.</p>"
           }
         },
         "f2": {
@@ -25,14 +80,14 @@
         "f2"
       ],
       "settings": {
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-3",
         "newsletter_enable": true,
         "newsletter_heading": "Apúntate y entérate antes de las ofertas",
         "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
-        "payment_enable": true,
+        "payment_enable": false,
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 56,
@@ -41,6 +96,7 @@
     }
   },
   "order": [
+    "pagos",
     "footer"
   ]
 }
