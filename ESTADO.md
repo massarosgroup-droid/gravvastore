@@ -34,3 +34,7 @@ una vista previa en dorado y el cambio de foto al elegir el color.
 - Tarjetero croco y Funda portátil: se pueden vender sin existencias (antes salían agotados)
 - Ficha de producto: el fondo de la vista previa sigue el color elegido; opción de grabado Dorado/Plateado (llega al pedido como "Color del grabado")
 - Envíos España: falta cambiarlos a mano en el panel (2,99 € y gratis desde 50 €); la herramienta no deja editar esa tarifa
+
+## Cambios (10-oct)
+- Tarjetero croco (título actual: "Cartera acabado croco personalizada"): fotos nuevas (portada verde "Marc" + 1 por color) y 9 colores: Negro, Marrón, Burdeos, Fucsia, Lila, Azul Cielo, Azul Royal, Azul Marino, Verde. Fotos antiguas quitadas del producto (siguen en Archivos).
+- Copia "Gravva v2": colores de la vista previa para los 9 tonos y textos de portada "9 colores".

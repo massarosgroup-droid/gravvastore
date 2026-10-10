@@ -105,7 +105,7 @@
           "type": "producto",
           "settings": {
             "producto": "tarjetero-personalizado-nivel-basico-acabado-cocodrilo",
-            "etiqueta": "Acabado croco · 4 colores"
+            "etiqueta": "Acabado croco · 9 colores"
           }
         },
         "p5": {
@@ -215,7 +215,7 @@
         "i4": {
           "type": "punto",
           "settings": {
-            "texto": "En negro, azul marino, rosa o rojo"
+            "texto": "9 colores para elegir, del negro al azul cielo"
           }
         }
       },
@@ -247,18 +247,18 @@
         "o1": {
           "type": "ocasion",
           "settings": {
-            "imagen": "shopify://shop_images/cartera-rosa-croco.png",
+            "imagen": "shopify://shop_images/tarjetero-croco-fucsia.png",
             "titulo": "Para ella",
-            "texto": "Rosa o rojo, con su nombre",
+            "texto": "Fucsia, lila o azul cielo, con su nombre",
             "url": "shopify://products/tarjetero-personalizado-nivel-basico-acabado-cocodrilo"
           }
         },
         "o2": {
           "type": "ocasion",
           "settings": {
-            "imagen": "shopify://shop_images/cartera-negro-croco.png",
+            "imagen": "shopify://shop_images/tarjetero-croco-portada-verde.jpg",
             "titulo": "Para él",
-            "texto": "Negro o azul marino, siempre elegante",
+            "texto": "Negro, marrón o verde, siempre elegante",
             "url": "shopify://products/tarjetero-personalizado-nivel-basico-acabado-cocodrilo"
           }
         },

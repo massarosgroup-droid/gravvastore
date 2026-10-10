@@ -1,6 +1,6 @@
 {%- comment -%} Tarjeta de producto Gravva. Recibe: product, etiqueta, cta, attrs, idx {%- endcomment -%}
 {%- liquid
-  assign colores = 'negro:#151515,azul:#1d2a4d,marino:#1d2a4d,rosa:#e7a9b8,rojo:#a3192b,marr:#6b4026,caf:#6b4026,beige:#d8c3a0,verde:#2f4a3a,gris:#8a8a8a,blanco:#f4f1ea,lila:#b9a3cf' | split: ','
+  assign colores = 'negro:#151515,cielo:#a9c1dc,royal:#22409a,marino:#1d2a4d,azul:#1d2a4d,fucsia:#b3214f,burdeos:#6b1d2a,granate:#6b1d2a,rosa:#e7a9b8,rojo:#a3192b,marr:#5a3524,caf:#5a3524,beige:#d8c3a0,verde:#1f5a45,gris:#8a8a8a,blanco:#f4f1ea,lila:#b5a2b8' | split: ','
   assign opcion_color = nil
   for o in product.options_with_values
     assign n = o.name | downcase
